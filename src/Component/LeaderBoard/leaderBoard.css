@@ -1,0 +1,71 @@
+.leaderboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+    backface-visibility: hidden;
+}
+
+.leaderboard .leaderBoarList {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 80vmin;
+    height: auto;
+    background: white;
+    padding: 5vmin;
+    border-radius: 2vmin;
+}
+
+.leaderboard .leaderBoarList::before {
+    position: absolute;
+    width: calc(100% - 2px);
+    height: calc(100% - 2px);
+    background: white;
+    border-radius: 100%;
+    filter: drop-shadow(15vmin 15vmin 22vmin navy);
+    transform-box: fill-box;
+    -webkit-transform-box: fill-box;
+    transform-origin: center;
+    -webkit-transform-origin: center;
+    content: "";
+    z-index: -10;
+    animation: shadowRotate 5s linear infinite;
+}
+
+.leaderboard .leaderBoarList h2 {
+    font-size: 6vmin;
+    line-height: 110%;
+    font-weight: 600;
+    color: black;
+    text-align: center;
+}
+
+@keyframes shadowRotate {
+    to {
+        transform: rotateZ(360deg);
+    }
+}
+
+.leaderboard .leaderBoarList ul {
+    margin: 3px 0;
+    list-style: none;
+    text-transform: uppercase;
+    border-bottom: 1px solid navy;
+    width: 100%;
+}
+
+.leaderboard .leaderBoarList ol {
+    width: 100%;
+    margin-left: -10px;
+}
+
+.leaderboard .leaderBoarList .backtogame {
+    padding-bottom: 10px;
+}

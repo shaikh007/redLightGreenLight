@@ -1,23 +1,70 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import GreenLightRedLight from "./Component/GreenLightRedLight/GreenLightRedLight";
+import RegistrationForm from "./Component/RegistrationForm/RegistrationForm";
+import LeaderBoard from "./Component/LeaderBoard/LeaderBoard";
 
 function App() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [number, setNumber] = useState("");
+  const [level, setLevel] = useState("");
+
+  const [startGame, setStartGame] = useState(false);
+  const [score, setScore] = useState(0);
+  const [timeRemaining, setTimeRemaining] = useState(40);
+  const [gameOver, setGameOver] = useState(false);
+
+  const [scores, setScores] = useState([]);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <RegistrationForm
+              name={name}
+              setName={setName}
+              email={email}
+              setEmail={setEmail}
+              number={number}
+              setNumber={setNumber}
+              level={level}
+              setLevel={setLevel}
+            />
+          }
+        />
+        <Route
+          path="gamearea"
+          element={
+            <GreenLightRedLight
+              startGame={startGame}
+              setStartGame={setStartGame}
+              score={score}
+              setScore={setScore}
+              timeRemaining={timeRemaining}
+              setTimeRemaining={setTimeRemaining}
+              gameOver={gameOver}
+              setGameOver={setGameOver}
+              scores={scores}
+              setScores={setScores}
+            />
+          }
+        />
+        <Route
+          path="gamearea/leaderBoard"
+          element={
+            <LeaderBoard
+              scores={scores}
+              setScores={setScores}
+              score={score}
+              setScore={setScore}
+              name={name}
+            />
+          }
+        />
+      </Routes>
     </div>
   );
 }
