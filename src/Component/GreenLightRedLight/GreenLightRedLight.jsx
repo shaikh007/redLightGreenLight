@@ -71,7 +71,7 @@ const GreenLightRedLight = ({
     }
   };
 
-  const boxColor = Math.random() > 0.2 ? "green" : "red";
+  const boxColor = Math.random() > 0.5 ? "green" : "red";
 
   // leaderBoard
   const addDataToLeaderboard = (newData) => {
@@ -90,6 +90,8 @@ const GreenLightRedLight = ({
     navigate("leaderBoard");
   };
 
+  const timeColor = timeRemaining <= 10 ? "red" : "green";
+
   return (
     <div className="container">
       <div className="backshadow">
@@ -98,7 +100,10 @@ const GreenLightRedLight = ({
         </div>
         <div className="time-level-profile">
           <div className="time">
-            <h4>Timer : {timeRemaining} seconds</h4>
+            <h4>
+              Timer : <span style={{ color: timeColor }}>{timeRemaining}</span>{" "}
+              seconds
+            </h4>
             <div>
               <div className="box-canvas">
                 <div className="frame">
