@@ -15,6 +15,7 @@ function App() {
   const [score, setScore] = useState(0);
   const [timeRemaining, setTimeRemaining] = useState(40);
   const [gameOver, setGameOver] = useState(false);
+  const [clicks, setClicks] = useState(10);
 
   const [scores, setScores] = useState([]);
   return (
@@ -32,6 +33,8 @@ function App() {
               setNumber={setNumber}
               level={level}
               setLevel={setLevel}
+              clicks={clicks}
+              setClicks={setClicks}
             />
           }
         />
@@ -49,6 +52,9 @@ function App() {
               setGameOver={setGameOver}
               scores={scores}
               setScores={setScores}
+              level={level}
+              clicks={clicks}
+              setClicks={setClicks}
             />
           }
         />

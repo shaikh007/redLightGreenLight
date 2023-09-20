@@ -13,6 +13,9 @@ const GreenLightRedLight = ({
   setGameOver,
   scores,
   setScores,
+  level,
+  clicks,
+  setClicks,
 }) => {
   const navigate = useNavigate();
 
@@ -30,9 +33,10 @@ const GreenLightRedLight = ({
         clearInterval(interval);
       };
     }
+
     const savedData = JSON.parse(localStorage.getItem("leaderboardData")) || [];
     setScores(savedData);
-  }, [startGame, timeRemaining]);
+  }, [startGame, timeRemaining, setGameOver, setScores, setTimeRemaining]);
 
   const handleClick = () => {
     if (gameOver) {
@@ -41,8 +45,13 @@ const GreenLightRedLight = ({
 
     if (startGame && boxColor === "green") {
       setScore(score + 1);
+      setClicks(clicks - 1);
     } else if (startGame && boxColor === "red") {
       setGameOver(true);
+    }
+    if (clicks === 0) {
+      setStartGame(false);
+      setClicks(0);
     }
   };
 
@@ -50,13 +59,23 @@ const GreenLightRedLight = ({
     setStartGame(true);
   };
   const handleRestart = () => {
-    window.location.reload();
+    console.log(level);
+    setTimeRemaining(40);
+    setGameOver(false);
+    setScore(0);
+    setStartGame(false);
+    if (localStorage.getItem("Difficulty Level") === "Easy") {
+      setClicks(10);
+    } else if (localStorage.getItem("Difficulty Level") === "Medium") {
+      setClicks(15);
+    } else if (localStorage.getItem("Difficulty Level") === "Hard") {
+      setClicks(20);
+    }
   };
 
-  const boxColor = Math.random() > 0.5 ? "green" : "red";
+  const boxColor = Math.random() > 0.2 ? "green" : "red";
 
   // leaderBoard
-  console.log(scores);
   const addDataToLeaderboard = (newData) => {
     const updatedData = [...scores, newData];
     setScores(updatedData);
@@ -77,19 +96,19 @@ const GreenLightRedLight = ({
     <div className="container">
       <div className="backshadow">
         <div className="welcome">
-          <h1>WellCome AlphaGreek</h1>
+          <h1>WellCome {localStorage.getItem("Name")}</h1>
         </div>
         <div className="time-level-profile">
           <div className="time">
             <h4>Timer : {timeRemaining} seconds</h4>
             <div>
-              <div class="box-canvas">
-                <div class="frame">
-                  <div class="top"></div>
-                  <div class="bottom">
-                    <div class="drip"></div>
-                    <div class="blob"></div>
-                    <div class="glass"></div>
+              <div className="box-canvas">
+                <div className="frame">
+                  <div className="top"></div>
+                  <div className="bottom">
+                    <div className="drip"></div>
+                    <div className="blob"></div>
+                    <div className="glass"></div>
                   </div>
                 </div>
               </div>
@@ -98,13 +117,13 @@ const GreenLightRedLight = ({
           <div className="levelType">
             <h4>Difficulty : {localStorage.getItem("Difficulty Level")}</h4>
           </div>
-          <div className="profile">
-            <h4>Hello {localStorage.getItem("Name")}</h4>
-          </div>
         </div>
         <div className="score-leaderBoard">
           <div className="score">
             <h4>High Score : {score} </h4>
+          </div>
+          <div className="profile">
+            <h4>clicks : {clicks} </h4>
           </div>
           <div className="LeaderBoard" onClick={handleLeaderBoard}>
             <h4>LeaderBoard</h4>
@@ -123,6 +142,7 @@ const GreenLightRedLight = ({
             )}
           </div>
         </div>
+        {clicks === 0 ? <div>You Won The game </div> : <div>Play the game</div>}
 
         <div className="startbtn">
           {gameOver ? (
