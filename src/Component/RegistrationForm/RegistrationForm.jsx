@@ -56,7 +56,7 @@ const RegistrationForm = ({
     } else if (level === "Medium") {
       setClicks(15);
     } else if (level === "Hard") {
-      setClicks(20);
+      setClicks(25);
     }
   };
   return (

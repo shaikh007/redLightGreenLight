@@ -67,7 +67,7 @@ const GreenLightRedLight = ({
     } else if (localStorage.getItem("Difficulty Level") === "Medium") {
       setClicks(15);
     } else if (localStorage.getItem("Difficulty Level") === "Hard") {
-      setClicks(20);
+      setClicks(25);
     }
   };
 
