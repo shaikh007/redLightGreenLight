@@ -11,7 +11,6 @@ const RegistrationForm = ({
   setNumber,
   level,
   setLevel,
-  clicks,
   setClicks,
 }) => {
   const navigate = useNavigate();
@@ -52,8 +51,6 @@ const RegistrationForm = ({
     } else {
       navigate("/");
     }
-    console.log(name, email, number, level);
-
     if (level === "Easy") {
       setClicks(10);
     } else if (level === "Medium") {

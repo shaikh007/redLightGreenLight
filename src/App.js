@@ -33,7 +33,6 @@ function App() {
               setNumber={setNumber}
               level={level}
               setLevel={setLevel}
-              clicks={clicks}
               setClicks={setClicks}
             />
           }
@@ -52,7 +51,6 @@ function App() {
               setGameOver={setGameOver}
               scores={scores}
               setScores={setScores}
-              level={level}
               clicks={clicks}
               setClicks={setClicks}
             />

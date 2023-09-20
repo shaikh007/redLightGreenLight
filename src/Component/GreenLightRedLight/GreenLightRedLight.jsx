@@ -13,7 +13,6 @@ const GreenLightRedLight = ({
   setGameOver,
   scores,
   setScores,
-  level,
   clicks,
   setClicks,
 }) => {
@@ -59,7 +58,6 @@ const GreenLightRedLight = ({
     setStartGame(true);
   };
   const handleRestart = () => {
-    console.log(level);
     setTimeRemaining(40);
     setGameOver(false);
     setScore(0);

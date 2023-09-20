@@ -2,8 +2,7 @@ import React from "react";
 import "../LeaderBoard/leaderBoard.css";
 import { useNavigate } from "react-router-dom";
 
-const LeaderBoard = ({ scores, score }) => {
-  console.log(score);
+const LeaderBoard = ({ scores }) => {
   const navigate = useNavigate();
 
   const handleBackToGame = () => {
